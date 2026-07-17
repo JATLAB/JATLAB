@@ -1,5 +1,5 @@
 #zhihengcao/jatlab
-JATLAB: Use your browser as Scientific Calculator [http://jatlab.github.io/jatlab/](http://http://jatlab.github.io/jatlab//)
+JATLAB: Use your browser as Scientific Calculator [http://jatlab.github.io/jatlab/](http://jatlab.github.io/jatlab/)
 
 ## Motivation
 I believe a lot of people from Engineering background like myself have used MATLAB since their school years, not just for official projects, but also frequently as a quick calculator. 
@@ -7,7 +7,7 @@ Unfortunately, with each new version of MATLAB the software has become more and 
 Finding myself having have to use much lessor alternatives like the calculator app, an idea came to me.
 
 ## Features
-With JATLAB, from modern Desktop web browsers (Chrome,Edge,etc) load [http://jatlab.github.io/jatlab/](http://http://jatlab.github.io/jatlab//) then press F12 key to open Developer Console to instantly do over ~95% of things you used to do in MATLAB: 
+With JATLAB, from modern Desktop web browsers (Chrome,Edge,etc) load [http://jatlab.github.io/jatlab/](http://jatlab.github.io/jatlab/) then press F12 key to open Developer Console to instantly do over ~95% of things you used to do in MATLAB: 
 
 - All Javascript math functions available in Math.* can be used *without* typing `Math.` in front, such as:
 	- `sin`,`cos`,`tan`,`exp`,`log10`,`log`,`sqrt`,...
