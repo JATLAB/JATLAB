@@ -200,10 +200,10 @@ export function linspace(x1,x2,n){
 export function holdon(){ hold=true; }
 export function holdoff(){ hold=false; }
 export function xlabel(label){
-	chart.xAxis[0].update({title: label});
+	chart.xAxis[0].setTitle(label);
 }
 export function ylabel(label){
-	chart.yAxis[0].update({title: label});
+	chart.yAxis[0].setTitle(label);
 }
 
 // func: (t,y)=>dy/dt

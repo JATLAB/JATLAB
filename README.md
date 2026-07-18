@@ -2,14 +2,14 @@
 JATLAB: Use your browser as Scientific Calculator [jatlab.github.io](http://jatlab.github.io/)
 
 ## Motivation
-Lots of people with Engineering background like myself have used MATLAB since their school years, not just for official projects, but also frequently as a quick calculator. 
+Lots of people with Engineering background like myself have used MATLAB for many years, not just for official projects, but also frequently as a quick calculator. 
 
-Unfortunately, with each new version of MATLAB the software has become more and more bloated with rarely used features, resulting in longer and longer load times and heavy memory/CPU usage. Also, the MATLAB license has become more expensive and restrictive, and as a result it is not as widely available as before. 
+Unfortunately, with each new version, MATLAB has become more and more bloated with rarely used buttons and features, resulting in longer and longer load times, sluggish performance with heavy memory/CPU usage. Also, the MATLAB license has become more expensive and restrictive, and as a result it is not as widely available as before. 
 
-Finding myself having have to use much lessor alternatives like the calculator app, an idea came to me.
+Finding myself having have to use much lessor alternatives like the Windows' calculator program, an idea came to me.
 
 ## Features
-With JATLAB, from modern Desktop web browsers (Chrome,Edge,etc) load [jatlab.github.io](http://jatlab.github.io/) then press F12 key to open Developer Console to instantly do over ~95% of things you used to do in MATLAB: 
+With JATLAB, from modern Desktop web browsers (Chrome,Edge,etc) load [jatlab.github.io](http://jatlab.github.io/) then **press F12 key** to open Developer Console to instantly do over ~95% of things you used to do in MATLAB: 
 
 - All Javascript math functions available in Math.* can be used *without* typing `Math.` in front, such as:
 	- `sin`,`cos`,`tan`,`exp`,`log10`,`log`,`sqrt`,...
@@ -28,12 +28,12 @@ MATLAB is vast, but I hope over time people will contribute their expertise to t
 ## Examples
 
 ### Basic Plotting
-[![Basic plot example](example1.png)](http://jatlab.github.io/)
 ```js
 x=linspace(0,2*PI); plot(x,sin(x));
 holdon(); plot(x,cos(x),'red');
 legend('sin','cos');
 ```
+[![Basic plot example](example1.png)](http://jatlab.github.io/)
 
 ### 3D Plotting of Time Marched Burger's Equation dy/dt = -y*dy/dx
 ```js
