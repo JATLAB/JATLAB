@@ -58,7 +58,8 @@ csvwrite(y,'burger.csv');
 Later
 ```js
 let yt = await csvread();
-heatmap(log(add(y,1.1)))
+figure(2);
+heatmap(log(add(yt,1.1)))
 xlabel('x'); ylabel('Time'); zlabel('log(y+1.1)');
 ```
 This produces the same plot except in log scale. 
