@@ -66,6 +66,31 @@ This produces the same plot except in log scale.
 
 Note that due to security Javascript is not allowed to read programmatically generated file name, the user needs to manually select the CSV file using File chooser.
 
+### FFT Plot of Delta-Sigma Modulator
+```js
+var accum=0;
+function dsm(vin){
+	accum= accum+vin;
+	if(accum>1+randn()*1e-3){
+		accum-=1; return 1;
+	}else return 0;
+}
+let vin = add(0.5,scale(0.5,sin(linspace(0,100*PI,65536))));
+let dout = vin.map((vin)=>dsm(vin));
+plot(dout); holdon(); plot(vin,'red');
+```
+[![DSM example](dsm_example.png)](http://jatlab.github.io/)
+
+```js
+figure(2);
+semilogx(scale(20,log10(abs(fft(dout)))));
+ylabel('dB')
+```
+
+[![FFT example](fft_example.png)](http://jatlab.github.io/)
+
+## Limitations and Differences from MATLAB
+
 ### Basic Arithmetic of Arrays
 Unfortunately Javascript does not allow elementwise "+" or "*" for vector/arrays like MATLAB. So for arrays, do the following instead:
 ```js
@@ -112,27 +137,3 @@ a.unshift(0)		// [0,1,2,3,4,5,6], in MATLAB a=[0,a];
 u=a.pop()			// u=6, a=[0,1,2,3,4,5], in MATLAB u=a(1); a=a(2:end)
 w=a.shift()			// w=0, a=[1,2,3,4,5],  in MATLAB w=a(end);a=a(1:end-1)
 ```
-
-### FFT Plot of Delta-Sigma Modulator
-```js
-var accum=0;
-function dsm(vin){
-	accum= accum+vin;
-	if(accum>1+randn()*1e-3){
-		accum-=1; return 1;
-	}else return 0;
-}
-let vin = add(0.5,scale(0.5,sin(linspace(0,100*PI,65536))));
-let dout = vin.map((vin)=>dsm(vin));
-plot(dout); holdon(); plot(vin,'red');
-```
-[![DSM example](dsm_example.png)](http://jatlab.github.io/)
-
-```js
-figure(2);
-semilogx(scale(20,log10(abs(fft(dout)))));
-ylabel('dB')
-```
-
-[![FFT example](fft_example.png)](http://jatlab.github.io/)
-
