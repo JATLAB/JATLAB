@@ -199,6 +199,13 @@ export function linspace(x1,x2,n){
 }
 export function holdon(){ hold=true; }
 export function holdoff(){ hold=false; }
+export function xlabel(label){
+	chart.xAxis[0].update({title: label});
+}
+export function ylabel(label){
+	chart.yAxis[0].update({title: label});
+}
+
 // func: (t,y)=>dy/dt
 export function ode23(func:Function, tspan:number[], y0){
 	let y=y0;
@@ -287,6 +294,13 @@ export function digits(d){
 	if(!d) console.log(`Displaying ${n_digits} decimal digits`);
 	else n_digits=d;
 }
+export function hanning(N:number){
+	let win=[];
+	for (let i = 0; i < N; i++) {
+		win.push(0.5 * (1 - Math.cos((2 * Math.PI * i) / (N - 1))));
+	}
+	return win;
+}
 if (typeof window !== 'undefined') {
 	Object.getOwnPropertyNames(Math).forEach(prop => {
 		let arglen=Math[prop].length;
@@ -304,12 +318,13 @@ if (typeof window !== 'undefined') {
 	});
 	window.plot = plot; window.semilogx=semilogx; window.semilogy=semilogy; window.loglog=loglog;
 	window.cplot=cplot; window.holdon=holdon; window.holdoff=holdoff; window.chart=chart;
-	window.title=title;
+	window.title=title; window.xlabel=xlabel; window.ylabel=ylabel;
 	window.legend=legend; window.ode23=ode23; window.ode=ode; window.contour=contour; window.heatmap=heatmap; 
 	window.csvread=csvread; window.csvwrite=csvwrite; window.csvread2=csvread2;
 	window.figure=figure; window.close=close; window.fft=fft; window.ifft=ifft; 
 	window.abs=abs; window.angle=angle; window.real=real; window.imag=imag; window.mean=mean; window.sum=sum; window.rms=rms; 
 	window.linspace=linspace; window.logspace=logspace;
+	window.hanning=hanning; 
 
 }
 
