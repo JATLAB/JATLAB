@@ -13,7 +13,7 @@ With JATLAB, from modern Desktop web browsers (Chrome,Edge,etc) load [jatlab.git
 
 - All Javascript math functions available in Math.* can be used *without* typing `Math.` in front, such as:
 	- `sin`,`cos`,`tan`,`exp`,`log10`,`log`,`sqrt`,...
-	- All these functions are extended to *accept 1D array as input* and returns array
+	- Most of these functions are extended to *accept 1D or 2D array as input* and returns 1D or 2D array
 	- Many MATLAB statistic functions such as `rms`,`mean`,`abs`, `sum`. 
 - Most commonly used MATLAB features are availble:
 	- Plotting: `plot`,`figure`,`close`,`holdon`,`holdoff`,`legend`,`xlabel`,`ylabel`,`title`,`semilogx`,`semilogy`,`loglog`
@@ -35,6 +35,7 @@ legend('sin','cos');
 ```
 [![Basic plot example](example1.png)](http://jatlab.github.io/)
 
+
 ### 3D Plotting of Time Marched Burger's Equation dy/dt = -y*dy/dx
 ```js
 function dwdt(t,y){
@@ -49,3 +50,14 @@ heatmap(y);
 xlabel('x'); ylabel('Time');
 ```
 
+### Saving and Loading CSV Files
+```js
+csvwrite(y,'burger.csv');
+```
+Later
+```js
+let yt = await csvread();
+heatmap(log(yt));
+```
+This produces the same plot except in log scale. The log file is 
+Note that due to security Javascript is not allowed to read programmatically generated file name, the user needs to manually select the CSV file using File chooser.

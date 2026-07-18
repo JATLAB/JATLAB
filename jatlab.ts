@@ -108,6 +108,7 @@ export function close(num){
 	figure(num-1);	
 }
 export function cplot(){
+	document.getElementById("helpText")?.remove();
 	while (chart.series.length > 0) {
 	   chart.series[0].remove(false); // pass false to avoid continuous re-rendering
 	}
@@ -135,7 +136,6 @@ export function plot(...args) {
 }
 var hold = false;
 export function _plot(...args){			
-	document.getElementById("helpText")?.remove();
 	let opt={};
 	if(typeof args[args.length-1]==='string') {
 		opt.color=args.pop();		
@@ -200,10 +200,10 @@ export function linspace(x1,x2,n){
 export function holdon(){ hold=true; }
 export function holdoff(){ hold=false; }
 export function xlabel(label){
-	chart.xAxis[0].setTitle(label);
+	chart.xAxis[0].setTitle({text: label});
 }
 export function ylabel(label){
-	chart.yAxis[0].setTitle(label);
+	chart.yAxis[0].setTitle({text: label});
 }
 
 // func: (t,y)=>dy/dt
@@ -306,11 +306,18 @@ if (typeof window !== 'undefined') {
 		let arglen=Math[prop].length;
 		if(arglen==1){
 			window[prop]=function(x){
-				if(Array.isArray(x))return x.map(Math[prop]); else return Math[prop](x);
+				if(Array.isArray(x)) {
+					if(Array.isArray(x[0])){
+						return x.map(xu=>xu.map(Math[prop]));
+					}
+					else return x.map(Math[prop]);
+				} else return Math[prop](x);
 			}
 		}else if(arglen==2){
 			window[prop]=function(x,y){
-				if(Array.isArray(x)) return x.map((xu,idx) => {return Math[prop](xu,y[idx]);}); else return Math[prop](x,y);
+				if(Array.isArray(x))
+					return x.map((xu,idx) => {return Math[prop](xu,y[idx]);}); 
+				else return Math[prop](x,y);
 			}			
 		}else{
 			window[prop]=Math[prop];
