@@ -430,22 +430,41 @@ function _randn(){
 }
 export function randn(H:number|null,W:number|null){
 	if(H===undefined)return _randn();
-	else{
-		const result = Array.from({ length: H }, () => new Array(W).fill(0));
-		for(let i=0;i<H;i++)
-			for(let j=0;j<W;j++)
-				result[i][j]=_randn();
+	else if(W===undefined){
+		const result = Array(H).fill(0);
+		for(let i=0;i<H;i++)result[i]=_randn();
 		return result;
+	}
+	else{
+		return gmat(H,W,_randn);
 	}
 }
 export function rand(H:number|null,W:number|null){
 	if(H===undefined)return Math.random()
-	else{
-		const result = Array.from({ length: H }, () => new Array(W).fill(0));
-		for(let i=0;i<H;i++)
-			for(let j=0;j<W;j++)
-				result[i][j]=Math.random();
+	else if(W===undefined){
+		const result = Array(H).fill(0);
+		for(let i=0;i<H;i++)result[i]=Math.random();
 		return result;
+	}
+	else{
+		return gmat(H,W,Math.random);
+	}
+}
+export function ones(H: number,W: number|null) {
+	if(W===undefined){
+		return Array(H).fill(1.0);
+	}
+	else{
+		return gmat(H,W,()=>1);
+	}
+}
+
+export function zeros(H: number,W: number|null) {
+	if(W===undefined){
+		return Array(H).fill(0);
+	}
+	else{
+		return gmat(H,W,()=>0.0);
 	}
 }
 export function gmat(H:number,W:number,fn:(i:number,j:number)=>number){
@@ -464,15 +483,15 @@ function _randi(spec:number|[number,number]){
 }
 export function randi(spec:number|[number,number], H:number|null,W:number|null){
 	if(H===undefined)return _randi(spec);
-	else{
-		const result = Array.from({ length: H }, () => new Array(W).fill(0));
-		for(let i=0;i<H;i++)
-			for(let j=0;j<W;j++)
-				result[i][j]=_randi(spec);
+	else if(W===undefined){
+		const result = Array(H).fill(0);
+		for(let i=0;i<H;i++)result[i]=_randi(spec);
 		return result;
 	}
+	else{
+		gmat(H,W,()=>_randi(spec));
+	}
 }
-
 if (typeof window !== 'undefined') {
 	Object.getOwnPropertyNames(Math).forEach(prop => {
 		let arglen=Math[prop].length;
@@ -505,7 +524,7 @@ if (typeof window !== 'undefined') {
 	window.linspace=linspace; window.logspace=logspace;
 	window.hanning=hanning; 
 	window.add=add; window.scale=scale; window.dot=dot; window.transpose=transpose; window.mcat=mcat; window.mapply = mapply;
-	window.rand=rand; window.randn=randn; window.randi=randi; window.gmat=gmat;
+	window.rand=rand; window.randn=randn; window.randi=randi; window.gmat=gmat; window.ones=ones; window.zeros=zeros;
 	window.sample2D_cell_centered = sample2D_cell_centered;
 	window.sample1D_cell_centered = sample1D_cell_centered;
 }

@@ -21,7 +21,8 @@ With JATLAB, from modern Desktop web browsers (Chrome,Edge,etc) load [jatlab.git
 	- FFT: `fft`,`hanning`
 	- Many MATLAB statistic functions such as `rms`,`mean`,`abs`, `sum`, `max`, `min`. They support 1D array of real or complex (2 element array) numbers. 	
 	- Complex numbers: `abs`,`angle`,`real`,`imag`. Complex numbers are in the 2-element array *[real_part, imag_part]*. 
-	- `rand`,`randn`,`linspace`,`logspace`,`ode23`
+	- Array/matrix creation: `zeros`,`ones`,`rand`,`randn`,`randi`,`linspace`,`logspace`
+	- Time marching: `ode`,`ode23`
 
 MATLAB is vast, but I hope over time people will contribute their expertise to this project to expand these features. 
 
@@ -102,7 +103,7 @@ function dwdt(t,y){
 		else return( pow(current,2)-pow(right,2))*0.5/dx;
 	} );
 }
-let y=ode23(dwdt, tspan, y0);
+let y=ode23(dwdt, linspace(0,1,300), y0);
 heatmap(y);
 xlabel('x'); ylabel('Time');
 ```
